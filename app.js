@@ -41,23 +41,25 @@ boxes.forEach((box)=>{
 
 const checkWinner=()=>{
     for(let pattern of winPatterns){
-
-        if(count==9){
-            msg.innerText="It is a Tie !";
-            msgContainer.classList.remove("hide");
-        }
-        
+ 
         let val1 = boxes[pattern[0]].innerText;
         let val2 = boxes[pattern[1]].innerText;
         let val3 = boxes[pattern[2]].innerText;
 
-        if(val1!="" && val2!="" && val2!=""){
+        if(val1!="" && val2!="" && val3!=""){
             if(val1===val2 && val2===val3){
 
                 showWinner(val1);
+                return;
             }
         }
     }
+    if(count == 9)
+        {
+            msg.innerText="It is a Tie !";
+            msgContainer.classList.remove("hide");
+
+        }
 }
 
 const showWinner=(winner)=>{
@@ -85,6 +87,7 @@ const enableBoxes=()=>{
 
 const resetGame=()=>{
     turn0=true;
+    count=0;
     enableBoxes();
     msgContainer.classList.add("hide");
 }
